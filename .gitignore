@@ -1,0 +1,3 @@
+stack/bidirectional-stack/.idea/*
+stack/bidirectional-stack/cmake-build-debug/*
+stack/bidirectional-stack/CMakeLists.txt
