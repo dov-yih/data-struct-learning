@@ -15,4 +15,4 @@ typedef struct {
 bool initList ( biStack &bS );
 bool push ( biStack &bS, int direction, ElemType value );
 bool pop ( biStack &bS, int direction );
-#endif //BIDIRECTIONAL_STACK_BIDIRECTIONAL_H
+#endif BIDIRECTIONAL_STACK_BIDIRECTIONAL_H

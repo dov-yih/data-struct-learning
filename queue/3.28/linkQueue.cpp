@@ -15,12 +15,12 @@ bool initQueue ( Queue &Q )
 bool enQueue ( Queue &Q , ElemType e )
 {
     LNode *node = new LNode,
-            *head = Q.rear,
+            *rear = Q.rear,
             *p;
     node->data = e;
-    p = head->next;
+    p = rear->next;
     node->next = p;
-    head->next = node;
+    rear->next = node;
     return true;
 }
 bool delQueue (Queue &Q, ElemType &e )
@@ -29,15 +29,15 @@ bool delQueue (Queue &Q, ElemType &e )
     {
         return false;
     }
-    LNode *p,*to_free;
+    LNode *p,*to_delete;
     p = Q.rear;
     while ( p->next->next != Q.rear)
     {
         p = p->next;
     }
     e = p->next->data;
-    to_free = p->next;
+    to_delete = p->next;
     p->next = p->next->next;
-    free(to_free);
+    delete to_delete;
     return true;
 }

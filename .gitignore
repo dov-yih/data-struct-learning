@@ -1,3 +1,11 @@
 stack/bidirectional-stack/.idea/*
 stack/bidirectional-stack/cmake-build-debug/*
 stack/bidirectional-stack/CMakeLists.txt
+
+queue/3.28/.idea/*
+queue/3.28/cmake-build-debug/*
+queue/3.28/CMakeLists.txt
+
+link-list/bidirectional-ysfring/.idea/*
+link-list/bidirectional-ysfring/cmake-build-debug/*
+link-list/bidirectional-ysfring/CMakeLists.txt
