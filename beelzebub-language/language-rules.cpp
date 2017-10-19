@@ -69,6 +69,7 @@ char * real_rule_two ( char *str ) {
         encode->push(str[index]);
         encode->push(needle);
     }
+    // 转换成字符串方便返回，返回局部对象的情况不好处理
     char *ret_str,ch;
     ret_str = ( ElemType * ) malloc( encode->length() * sizeof(ElemType) + 1);
     int index = 0;
@@ -88,34 +89,78 @@ char * real_rule_two ( char *str ) {
 /// \param trans_result trans_result 要转换的字符串队列
 /// \param result result 返回的结果队列
 void rule_two(Queue *trans_result,Queue *result){
-    Stack brackets;
-    char rule_two_str[50],ch;
+    Stack brackets,in_brackets;
+    char rule_two_str[50],
+            ch,
+        clapboard = '|'; // 隔板
     int index = 0;
-
     while ( ! trans_result->isEmpty() ) {
         trans_result->delQueue(ch);
+        // assic 41 = )
         if( ch == 41 ) {
             brackets.pop();
-            rule_two_str[index] = '\0';
-            char *strp = real_rule_two(rule_two_str);
-            for (int index = 0; index < strlen(strp); ++index) {
-                result->enQueue(strp[index]);
+
+            /// 两种情况
+            /// 1. 一层括号了 --->>> 空了
+            /// 2. 多层括号  --->>> 未空
+
+            // 将隔板上面的字母 pop
+            char get;
+            Stack to_trans;
+            do {
+                in_brackets.pop( get );
+                to_trans.push(get);
+            } while (get != clapboard && ! in_brackets.isEmpty() );
+
+
+            if( get == '|' ) {
+                // pop 隔板
+                to_trans.pop();
             }
+
+            char needle;
+            to_trans.pop( needle );
+            in_brackets.push( needle );
+            while ( ! to_trans.isEmpty() ) {
+                to_trans.pop( get );
+                in_brackets.push( get );
+                in_brackets.push( needle );
+            }
+            char en_queue;
+            if ( brackets.isEmpty() ) {
+                while ( ! in_brackets.isEmpty() ) {
+                    in_brackets.pop( en_queue );
+                    result->enQueue( en_queue );
+                }
+            }
+
+//            char *strp = real_rule_two(rule_two_str);
+            // 将字符压入队列
+//            for (int index = 0; index < strlen(strp); ++index) {
+//                result->enQueue(strp[index]);
+//            }
             // rule_two_str 的索引清零
-            index = 0;
+//            index = 0;
             // 结束括号跳过，不加入队列
             continue;
         }
 
-        if ( ! brackets.isEmpty() ) {
-            rule_two_str[index] = ch;
-            index ++;
-            // 当字符串是括号里的字母，跳过加入队列
-            continue;
-        }
+        // assic 40 = (
         if( ch == 40 ) {
+            // 遇到 ( 并且 brackets 不空，就在 in_brackets 压入一个隔板 |
+            if ( ! brackets.isEmpty() ) {
+                in_brackets.push( clapboard );
+            }
             brackets.push(ch);
             // 开始括号跳过不加入队列
+//            result->enQueue( clapboard );
+            continue;
+        }
+
+        if ( ! brackets.isEmpty() ) {
+            in_brackets.push( ch );
+            index ++;
+            // 当字符串是括号里的字母，跳过加入队列
             continue;
         }
 
