@@ -21,9 +21,9 @@ int main() {
 //    queue_test();
 //    deque_test();
 
-    char str[50] = "A(ab(efg)cd)B";
-    Queue get = test();
-    cin.getline( str, 50 );
+    char str[50] = "((ab)(cd))";
+//    Queue get = test();
+//    cin.getline( str, 50 );
 
     Queue *trans_result = new Queue;
 
