@@ -9,7 +9,7 @@
 #include "Queue.h"
 
 
-/// 在队列的基础上增加一种在对首插入的操作
+/// 在队列的基础上增加一种在队首插入的操作
 class Deque: public Queue {
 public:
     Deque();

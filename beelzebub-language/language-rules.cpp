@@ -101,31 +101,38 @@ void rule_two(Queue *trans_result,Queue *result){
 
             // 将隔板上面的字母 pop
             char get;
-            Stack to_trans;
+            Queue to_trans;
 
             // pop )
             save.pop();
 
+            char needle;
             save.pop( get );
             while (get != '(' && ! save.isEmpty() ){
-                to_trans.push(get);
+                needle = get;
+                to_trans.enQueue(get);
                 save.pop( get );
             };
 
-            char needle;
-            to_trans.pop( needle );
             save.push( needle );
             while ( ! to_trans.isEmpty() ) {
-                to_trans.pop( get );
+                to_trans.delQueue( get );
                 save.push( get );
                 save.push( needle );
             }
+            save.pop();
+            save.pop();
         }
 
     }
     char to_pop;
+    Stack output;
     while ( ! save.isEmpty() ) {
         save.pop( to_pop );
+        output.push( to_pop );
+    }
+    while ( ! output.isEmpty() ) {
+        output.pop( to_pop );
         std::cout << to_pop;
     }
     delete trans_result;
