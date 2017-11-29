@@ -4,6 +4,7 @@
 typedef int ElemType;
 #ifndef BIDIRECTIONAL_STACK_BIDIRECTIONAL_H
 #define BIDIRECTIONAL_STACK_BIDIRECTIONAL_H
+// #define ElemType boo_list
 typedef struct {
     ElemType *base;
     int curOlder;  // 双向栈‘开头’处的栈顶游标

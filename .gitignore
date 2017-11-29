@@ -9,3 +9,7 @@ queue/3.28/CMakeLists.txt
 link-list/bidirectional-ysfring/.idea/*
 link-list/bidirectional-ysfring/cmake-build-debug/*
 link-list/bidirectional-ysfring/CMakeLists.txt
+
+beelzebub-language/.idea/*
+beelzebub-language/cmake-build-debug/*
+beelzebub-language/CMakeLists.txt
